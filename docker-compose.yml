@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    build: ./portforever
+    build: ./solicitud
     ports:
       - "5000:5000"
   nginx:
@@ -10,3 +10,11 @@ services:
       - "80:80"
     links:
       - web
+  db:
+    build: ./database
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
